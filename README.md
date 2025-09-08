@@ -13,3 +13,11 @@
 
 #### Still within **General Data**, I changed columns such as **JobLevel, EmploymentType, PayFrequency, BenefitPlan, and IsActive** into dropdown lists for easier data entry and consistency.
 
+<img width="1366" height="484" alt="Image" src="https://github.com/user-attachments/assets/d2dc8a91-a63f-484b-9df9-1f10cc528da7" />
+
+#### As you can see, our data is already starting to look much better.
+#### The dataset is already quite clean except for a few blank cells, so we can skip extensive cleaning and move straight to calculations.
+
+
+
+
