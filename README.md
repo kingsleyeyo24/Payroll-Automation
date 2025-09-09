@@ -122,6 +122,8 @@ After that, we hit **Run**, and the script started executing. As you can see in 
 
 <img width="1284" height="653" alt="Image" src="https://github.com/user-attachments/assets/4c51955c-6fbe-4535-8995-4eab196acd2f" />
 
+Please note that I also had to grant the required Google permissions for the script to run. Without that, the execution would not have been successful.
+
 
 
 
