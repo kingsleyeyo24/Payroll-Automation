@@ -22,6 +22,37 @@ The dataset is already quite clean except for a few blank cells, so we can skip 
 As requested by the client, I created three new sheets. The first is **Employee Master Data**, which contains mostly static personal and employment details that rarely change. The columns include:
 **EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, TerminationDate, CompanyHireDate, LastPromotionDate, StreetAddress, City, State, ZipCode, IBAN, RoutingNumber, and BankAccountNumber.**
 
+For the **EmployeeID** column, I used the formula 
+```excel
+='General Data'!A2
+```
+to pull the ID directly from the **General Data** sheet, ensuring consistency across both sheets.
+
+<img width="1361" height="423" alt="Image" src="https://github.com/user-attachments/assets/bac48513-6a6e-482d-9ede-3cfaf96234db" />
+
+For the **FirstName** column, I used the formula
+
+```excel
+=INDEX('General Data'!B:B, MATCH(A2, 'General Data'!A:A, 0))
+```
+
+This finds the row where the **EmployeeID** in A2 appears in column A of the General Data sheet and returns the **FirstName** from column B of that row.
+
+I used this **INDEX MATCH** method for multiple columns including EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, StreetAddress, City, State, ZipCode, IBAN, RoutingNumber, and BankAccountNumber.
+
+MATCH finds the correct row, and INDEX returns the value from the specified column in that row.
+
+You might be thinking, why not use VLOOKUP? VLOOKUP can only look to the right of the lookup column. Even though EmployeeID is in the first column, inserting a new column like MiddleName would break the formulas. INDEX MATCH avoids this because it specifies which column to return, making it more flexible and reliable.
+
+For the **TerminationDate** and **LastPromotionDate** columns, I did things a bit differently. Using the regular formula caused an error because some cells were blank, which makes sense since active employees don’t have a termination date. To fix this, I used
+
+```excel
+=IFERROR(INDEX('General Data'!O:O, MATCH(A2, 'General Data'!A:A, 0)),"")
+```
+
+This way, any empty values in the column return "" instead of an error.
+
+<img width="1366" height="413" alt="Image" src="https://github.com/user-attachments/assets/0a353c8c-d23e-452e-a77e-d3d990d4e84f" />
 
 
 
