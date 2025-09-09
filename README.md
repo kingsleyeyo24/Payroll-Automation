@@ -65,12 +65,61 @@ All of this data is referenced from the General Data sheet, so General Data rema
 
 Next, I created a sheet called **PayrollData**, which includes columns such as EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, TerminationDate, AnnualSalary, PayFrequency, HourlyRate, BenefitPlan, BankAccountNumber, RoutingNumber, StreetAddress, City, State, ZipCode, CompanyHireDate, Column 1, IsActive, IBAN, CreditCardNumber, CreditCardProvider, LastPromotionDate, BonusPaidYTD, TaxWithheldYTD, RetirementContributionYTD, GrossPay, CurrentBonus, Tax, CurrentRetirementContribution, NetPay, DateProcessed, and Month/Period.
 
-These sheet largely cover the deliverables requested by the client.
+To pull data from **General Data** into a separate Payroll sheet, I wrote a script using **JavaScript** in **Apps Script**. The goal was to only bring in active employees, keeping the payroll data clean and up to date.
+
+The script starts by accessing the spreadsheet and defining the source and target sheets:
+
+```javascript
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var source = ss.getSheetByName('General Data');
+var target = ss.getSheetByName('Sheet5');
+```
+
+It then grabs all the data from the source sheet and identifies the **IsActive** column. This column tells whether an employee is active. If it’s missing, the script stops because filtering would be impossible:
+
+```javascript
+var data = source.getDataRange().getValues();
+var headers = data[0];
+var isActiveCol = headers.indexOf("IsActive"); 
+if (isActiveCol === -1) throw new Error("IsActive column not found.");
+```
+
+Next, it filters only the rows where **IsActive = "Yes"**, ensuring that only active employees are pulled:
+
+```javascript
+var active = data.slice(1).filter(r => r[isActiveCol] === "Yes");
+```
+
+Before writing the new data, the script clears any old rows in the target sheet while keeping the headers intact, so old and new data don’t stack up:
+
+```javascript
+if (target.getLastRow() > 1) {
+  target.getRange(2, 1, target.getLastRow() - 1, headers.length).clearContent();
+}
+```
+
+Then, it writes the filtered active employees into the target sheet starting from row 2:
+
+```javascript
+if (active.length) {
+  target.getRange(2, 1, active.length, headers.length).setValues(active);
+}
+```
+
+Finally, the script logs how many active employees were added, so I can confirm that the update ran successfully:
+
+```javascript
+Logger.log("PayrollData updated with " + active.length + " active employees.");
+```
+
+This approach ensures the Payroll sheet always reflects the active employees from General Data automatically, without any manual filtering or copying.
+
+<img width="1198" height="643" alt="Image" src="https://github.com/user-attachments/assets/6dc1358f-4011-49d6-8a2b-cfaaff48332d" />
 
 
 
 
-
+<img width="1284" height="653" alt="Image" src="https://github.com/user-attachments/assets/4c51955c-6fbe-4535-8995-4eab196acd2f" />
 
 
 
