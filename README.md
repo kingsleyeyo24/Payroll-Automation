@@ -54,6 +54,22 @@ This way, any empty values in the column return "" instead of an error.
 
 <img width="1366" height="413" alt="Image" src="https://github.com/user-attachments/assets/0a353c8c-d23e-452e-a77e-d3d990d4e84f" />
 
+As you can see, our HR data is looking nice.
+
+<img width="1326" height="456" alt="Image" src="https://github.com/user-attachments/assets/f36f2d8b-0046-44da-8f5a-66c40e282f2d" />
+
+All of this data is referenced from the General Data sheet, so General Data remains the ultimate source. Any changes made there will automatically be reflected here, as requested by the client.
+
+
+
+
+Next, I created a sheet called **PayrollData**, which includes columns such as EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, TerminationDate, AnnualSalary, PayFrequency, HourlyRate, BenefitPlan, BankAccountNumber, RoutingNumber, StreetAddress, City, State, ZipCode, CompanyHireDate, Column 1, IsActive, IBAN, CreditCardNumber, CreditCardProvider, LastPromotionDate, BonusPaidYTD, TaxWithheldYTD, RetirementContributionYTD, GrossPay, CurrentBonus, Tax, CurrentRetirementContribution, NetPay, DateProcessed, and Month/Period.
+
+These sheet largely cover the deliverables requested by the client.
+
+
+
+
 
 
 
