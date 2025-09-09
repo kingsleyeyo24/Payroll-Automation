@@ -56,7 +56,7 @@ This way, any empty values in the column return "" instead of an error.
 
 As you can see, our HR data is looking nice.
 
-<img width="1326" height="456" alt="Image" src="https://github.com/user-attachments/assets/f36f2d8b-0046-44da-8f5a-66c40e282f2d" />
+<img width="1318" height="428" alt="Image" src="https://github.com/user-attachments/assets/4e5c3fbb-8d59-409c-97a9-11887a370dde" />
 
 All of this data is referenced from the General Data sheet, so General Data remains the ultimate source. Any changes made there will automatically be reflected here, as requested by the client.
 
@@ -126,15 +126,15 @@ Please note that I also had to grant the required Google permissions for the scr
 
 As you can see below, the PayrollData has now been successfully pulled out from the General Data sheet, and I formatted it neatly into a table so it is structured, easy to read, and ready for analysis or reporting.
 
-<img width="1318" height="434" alt="Image" src="https://github.com/user-attachments/assets/090c2e36-c399-4dfe-b77b-bca944e8ac67" />
+<img width="1254" height="420" alt="Image" src="https://github.com/user-attachments/assets/6a43ec41-3716-4e0d-aa16-9528cec4dec6" />
 
 
 
-I created a column called **GrossPay**. Since the employees in this dataset are all salaried, their gross pay was calculated based on their pay frequency.
+I created a column called GrossPay. Since the employees in this dataset are all salaried, it makes sense that their gross pay was calculated based on their pay frequency.
 
-* For employees paid **monthly**, GrossPay is the **Annual Salary ÷ 12**.
-* For employees paid **weekly**, GrossPay is the **Annual Salary ÷ 52**.
-* For employees paid **bi-weekly**, GrossPay is the **Annual Salary ÷ 26**.
+For employees paid monthly, GrossPay is the Annual Salary ÷ 12.
+For employees paid weekly, GrossPay is the Annual Salary ÷ 52.
+For employees paid bi-weekly, GrossPay is the Annual Salary ÷ 26.
 
 
 ```excel
@@ -146,5 +146,26 @@ I created a column called **GrossPay**. Since the employees in this dataset are 
 This way, GrossPay dynamically adjusts depending on each employee’s pay frequency.
 
 <img width="1366" height="418" alt="Image" src="https://github.com/user-attachments/assets/477bde10-f32e-4ddc-b2f5-c62f75f9ae6a" />
+
+For the Current Bonus, I created a column that calculates 10% of the employee’s pay for that specific pay period. 
+
+So, for employees paid monthly, the bonus is 10% of their monthly salary (Annual Salary ÷ 12 × 0.1).
+For those paid bi-weekly, it’s 10% of their bi-weekly salary (Annual Salary ÷ 26 × 0.1).
+And for employees paid weekly, it’s 10% of their weekly salary (Annual Salary ÷ 52 × 0.1).
+
+Here’s the formula I used:
+
+```excel
+=IF(Q2="Monthly", (P2/12)*0.1,
+ IF(Q2="Bi-Weekly", (P2/26)*0.1,
+ IF(Q2="Weekly", (P2/52)*0.1, 0)))
+```
+
+With this, the bonus is automatically tailored to each employee’s pay frequency, without needing to calculate it manually.
+
+<img width="528" height="273" alt="Image" src="https://github.com/user-attachments/assets/aa64e48b-1919-4ec4-94e9-633040f839b1" />
+
+
+
 
 
