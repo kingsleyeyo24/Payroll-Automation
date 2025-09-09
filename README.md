@@ -124,6 +124,27 @@ After that, we hit **Run**, and the script started executing. As you can see in 
 
 Please note that I also had to grant the required Google permissions for the script to run. Without that, the execution would not have been successful.
 
+As you can see below, the PayrollData has now been successfully pulled out from the General Data sheet, and I formatted it neatly into a table so it is structured, easy to read, and ready for analysis or reporting.
 
+<img width="1318" height="434" alt="Image" src="https://github.com/user-attachments/assets/090c2e36-c399-4dfe-b77b-bca944e8ac67" />
+
+
+
+I created a column called **GrossPay**. Since the employees in this dataset are all salaried, their gross pay was calculated based on their pay frequency.
+
+* For employees paid **monthly**, GrossPay is the **Annual Salary ÷ 12**.
+* For employees paid **weekly**, GrossPay is the **Annual Salary ÷ 52**.
+* For employees paid **bi-weekly**, GrossPay is the **Annual Salary ÷ 26**.
+
+
+```excel
+=IF(Q3="Monthly", P3/12, 
+   IF(Q3="Weekly", P3/52, 
+   IF(Q3="Bi-Weekly", P3/26, "")))
+```
+
+This way, GrossPay dynamically adjusts depending on each employee’s pay frequency.
+
+<img width="1366" height="418" alt="Image" src="https://github.com/user-attachments/assets/477bde10-f32e-4ddc-b2f5-c62f75f9ae6a" />
 
 
