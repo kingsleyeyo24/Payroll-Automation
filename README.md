@@ -114,10 +114,11 @@ Logger.log("PayrollData updated with " + active.length + " active employees.");
 
 This approach ensures the Payroll sheet always reflects the active employees from General Data automatically, without any manual filtering or copying.
 
+
 <img width="1198" height="643" alt="Image" src="https://github.com/user-attachments/assets/6dc1358f-4011-49d6-8a2b-cfaaff48332d" />
 
 
-
+After that, we hit **Run**, and the script started executing. As you can see in the execution log, it ran successfully without errors.
 
 <img width="1284" height="653" alt="Image" src="https://github.com/user-attachments/assets/4c51955c-6fbe-4535-8995-4eab196acd2f" />
 
