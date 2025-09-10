@@ -166,6 +166,29 @@ With this, the bonus is automatically tailored to each employee’s pay frequenc
 <img width="528" height="273" alt="Image" src="https://github.com/user-attachments/assets/aa64e48b-1919-4ec4-94e9-633040f839b1" />
 
 
+## Tax
+
+My Formula:
+
+```excel
+=MIN(AJ2+AK2,1000)*0.05
+ +MAX(MIN(AJ2+AK2-1000,2000),0)*0.1
+ +MAX(MIN(AJ2+AK2-3000,2000),0)*0.15
+ +MAX(AJ2+AK2-5000,0)*0.2
+```
+
+Breakdown:
+
+* `MIN(AJ2+AK2,1000)*0.05`  takes the first 1000 and taxes it at 5%
+* `MAX(MIN(AJ2+AK2-1000,2000),0)*0.1`  takes the next 2000 (1001–3000) and taxes it at 10%
+* `MAX(MIN(AJ2+AK2-3000,2000),0)*0.15`  takes the next 2000 (3001–5000) and taxes it at 15%
+* `MAX(AJ2+AK2-5000,0)*0.2`  takes everything above 5000 and taxes it at 20%
+
+
+
+<img width="867" height="430" alt="Image" src="https://github.com/user-attachments/assets/962fbe2f-1944-48f3-a675-63b36f479299" />
+
+
 
 
 
