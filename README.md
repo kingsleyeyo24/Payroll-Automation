@@ -188,6 +188,89 @@ Breakdown:
 
 <img width="867" height="430" alt="Image" src="https://github.com/user-attachments/assets/962fbe2f-1944-48f3-a675-63b36f479299" />
 
+## Current Retirement Contribution
+
+
+For the retirement contribution, I implemented the formula:
+
+```excel
+=(AJ2+AK2)*0.05
+```
+
+Breakdown:
+
+* `AJ2` → GrossPay
+* `AK2` → Current Bonus
+* `(AJ2+AK2)` → Total Earnings
+
+The formula multiplies total earnings by `0.05`, which means 5% of employee’s salary plus bonus is automatically deducted as their retirement contribution.
+
+<img width="1119" height="389" alt="Image" src="https://github.com/user-attachments/assets/3e828bb4-91f6-43d8-890d-4e7351561944" />
+
+
+## NetPay
+
+For the NetPay column, I used the formula:
+
+```excel
+=SUM(AJ2:AK2) - SUM(AL2:AM2)
+```
+
+Breakdown:
+
+* `AJ2` → GrossPay
+* `AK2` → Current Bonus
+* `AL2` → Tax
+* `AM2` → Current Retirement Contribution
+
+The formula first adds GrossPay + Current Bonus to get Total Earnings, then subtracts Tax + Retirement Contribution (Total Deductions).
+
+<img width="1123" height="398" alt="Image" src="https://github.com/user-attachments/assets/6a9466c7-8e31-40c4-9015-01bf5b5fb23f" />
+
+
+
+## Date Processed
+
+For tracking when payroll is processed, I used the formula:
+
+```excel
+=TODAY()
+```
+
+The `TODAY()` function  returns the current date based on the system clock. Each time the payroll sheet is opened or recalculated, the **Date Processed** column reflects the correct processing date without manual input.
+
+<img width="752" height="366" alt="Image" src="https://github.com/user-attachments/assets/1959d58b-0736-4aef-81ac-4265c22220d7" />
+
+
+## Month/Period Calculation
+
+To dynamically display the correct pay period based on an employee’s pay frequency, I implemented the following formula:
+
+```excel
+=IF(Q2="Monthly", 
+     TEXT(AO2,"mmmm yyyy"),
+ IF(Q2="Weekly", 
+     "Week " & WEEKNUM(AO2) & ", " & YEAR(AO2),
+ IF(Q2="Bi-Weekly", 
+     "Bi-Week: " & TEXT(AO2 - MOD(DAY(AO2)-1,14),"mmm d, yyyy") & " - " & TEXT(AO2 - MOD(DAY(AO2)-1,14)+13,"mmm d, yyyy"),
+ "")))
+```
+
+Breakdown:
+
+The formula adjusts the output based on pay frequency:
+
+* If Monthly, it displays the full month and year.
+* If Weekly, it displays the week number and year.
+* If Bi-Weekly, it displays the exact 14-day range.
+* If none of these apply, the cell remains blank.
+
+This setup ensures the Month/Period column always reflects the correct payroll cycle automatically.
+
+<img width="868" height="390" alt="Image" src="https://github.com/user-attachments/assets/e41cd0c5-c502-4779-9fb3-97bddf5c1a13" />
+
+
+
 
 
 
