@@ -5,7 +5,7 @@
 Project Title: Payroll Data Automation in Google Sheets
 
 Description:
-We are looking for a data professional to help us clean, structure, and automate our payroll process in Google Sheets.
+We are looking for a data professional to help us structure, and automate our payroll process in Google Sheets.
 
 Key Requirements:
 
@@ -51,7 +51,7 @@ Deliverables:
 * Documentation on how everything works.
 
 
-⚠️⚠️ Please note that this is synthetic data and does not contain any real information about my clients or their company.
+### ⚠️⚠️ Please note that this is synthetic data and does not contain any real information about my clients or their company.
 
 First, I duplicated the dataset. As data professionals, we often do this to preserve the original copy for reference in case anything goes wrong. Issues rarely occur, but keeping an untouched version is considered best practice.
 
@@ -70,7 +70,7 @@ As you can see, our data is already starting to look much better.
 The dataset is already quite clean except for a few blank cells, so we can skip extensive cleaning and move straight to calculations.
 
 # Employee Master Data
-As requested by the client, I created three new sheets. The first is Employee Master Data, which contains mostly static personal and employment details that rarely change. The columns include:
+As requested by the client, I created a new sheets. The Employee Master Data, which contains mostly static personal and employment details that rarely change. The columns include:
 EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, TerminationDate, CompanyHireDate, LastPromotionDate, StreetAddress, City, State, ZipCode, IBAN, RoutingNumber, and BankAccountNumber.
 
 For the EmployeeID column, I used the formula 
