@@ -200,9 +200,9 @@ For the retirement contribution, I implemented the formula:
 
 Breakdown:
 
-* `AJ2` → GrossPay
-* `AK2` → Current Bonus
-* `(AJ2+AK2)` → Total Earnings
+* `AJ2`  GrossPay
+* `AK2` Current Bonus
+* `(AJ2+AK2)`  Total Earnings
 
 The formula multiplies total earnings by `0.05`, which means 5% of employee’s salary plus bonus is automatically deducted as their retirement contribution.
 
@@ -219,10 +219,10 @@ For the NetPay column, I used the formula:
 
 Breakdown:
 
-* `AJ2` → GrossPay
-* `AK2` → Current Bonus
-* `AL2` → Tax
-* `AM2` → Current Retirement Contribution
+* `AJ2` GrossPay
+* `AK2` Current Bonus
+* `AL2` Tax
+* `AM2` Current Retirement Contribution
 
 The formula first adds GrossPay + Current Bonus to get Total Earnings, then subtracts Tax + Retirement Contribution (Total Deductions).
 
