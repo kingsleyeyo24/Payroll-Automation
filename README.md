@@ -9,11 +9,11 @@ We are looking for a data professional to help us structure, and automate our pa
 
 Key Requirements:
 
-1. **Data Cleaning & Structuring**
+1. Data Cleaning & Structuring
 
    * Reformat messy HR data into a structured table.
 
-2. **Employee Master Data Sheet**
+2. Employee Master Data Sheet
 
    * Create a dedicated sheet for employee master data (personal details, job details, and bank information).
    * Ensure all data here is pulled dynamically from the main *General Data* sheet to avoid duplication and ensure accuracy.
@@ -25,7 +25,7 @@ Key Requirements:
 
 4. Formulas & Logic
 
-   * Implement formulas for:
+    Implement formulas for:
 
      * Gross Pay (based on pay frequency: monthly, bi-weekly, weekly).
      * Bonus (10% of pay period earnings).
@@ -53,6 +53,8 @@ Deliverables:
 
 ### ⚠️⚠️ Please note that this is synthetic data and does not contain any real information about my clients or their company.
 
+
+## Data Preparation
 First, I duplicated the dataset. As data professionals, we often do this to preserve the original copy for reference in case anything goes wrong. Issues rarely occur, but keeping an untouched version is considered best practice.
 
 
