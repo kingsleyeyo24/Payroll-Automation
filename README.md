@@ -1,5 +1,56 @@
 # Payroll-Automation
 
+## Client Request
+
+Project Title: Payroll Data Automation in Google Sheets
+
+Description:
+We are looking for a data professional to help us clean, structure, and automate our payroll process in Google Sheets.
+
+Key Requirements:
+
+1. **Data Cleaning & Structuring**
+
+   * Reformat messy HR data into a structured table.
+
+2. **Employee Master Data Sheet**
+
+   * Create a dedicated sheet for employee master data (personal details, job details, and bank information).
+   * Ensure all data here is pulled dynamically from the main *General Data* sheet to avoid duplication and ensure accuracy.
+
+3. PayrollData Sheet
+
+   * Build a payroll sheet that automatically pulls only active employees from the General Data sheet.
+   * Include key payroll fields such as *Annual Salary, Pay Frequency, Gross Pay, Bonus, Tax, Retirement Contribution, Net Pay, and Pay Period*.
+
+4. Formulas & Logic
+
+   * Implement formulas for:
+
+     * Gross Pay (based on pay frequency: monthly, bi-weekly, weekly).
+     * Bonus (10% of pay period earnings).
+     * Tax (tiered structure: 5%, 10%, 15%, 20% depending on thresholds).
+     * Retirement Contribution (5% of earnings).
+     * Net Pay (Gross Pay + Bonus – Deductions).
+   * Automate pay period display (monthly, weekly, or bi-weekly ranges).
+
+5. Automation
+
+   * Write a Google Apps Script that ensures only active employees appear in PayrollData.
+   * Script should clear old data before updates and refresh automatically on run.
+
+6. Protection & Reliability
+
+   * Protect sensitive sheets by enabling a warning before edits, so formulas/functions are not accidentally broken.
+
+Deliverables:
+
+* Cleaned and structured General Data sheet.
+* Automated Employee Master Data sheet.
+* Fully functional PayrollData sheet with formulas, calculations, and automation script.
+* Documentation on how everything works.
+
+
 ⚠️⚠️ Please note that this is synthetic data and does not contain any real information about my clients or their company.
 
 First, I duplicated the dataset. As data professionals, we often do this to preserve the original copy for reference in case anything goes wrong. Issues rarely occur, but keeping an untouched version is considered best practice.
