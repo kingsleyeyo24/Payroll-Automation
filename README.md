@@ -1,6 +1,6 @@
 # Payroll-Automation
 
-Please note that this is synthetic data and does not contain any real information about my clients or their company.
+⚠️⚠️ Please note that this is synthetic data and does not contain any real information about my clients or their company.
 
 First, I duplicated the dataset. As data professionals, we often do this to preserve the original copy for reference in case anything goes wrong. Issues rarely occur, but keeping an untouched version is considered best practice.
 
@@ -9,20 +9,20 @@ First, I duplicated the dataset. As data professionals, we often do this to pres
 
 This is the data we got. It’s ugly and messy, so we’re going to fix it.
 
-Next, I converted the dataset into a table and applied a purple theme to match the company’s colors. I reformatted columns like **DateOfBirth, HireDate, TerminationDate, and LastPromotion** into proper date types and added placeholders where needed.
+Next, I converted the dataset into a table and applied a purple theme to match the company’s colors. I reformatted columns like DateOfBirth, HireDate, TerminationDate, and LastPromotion into proper date types and added placeholders where needed.
 
-Still within **General Data**, I changed columns such as **JobLevel, EmploymentType, PayFrequency, BenefitPlan, and IsActive** into dropdown lists for easier data entry and consistency.
+Still within General Data, I changed columns such as JobLevel, EmploymentType, PayFrequency, BenefitPlan, and IsActive into dropdown lists for easier data entry and consistency.
 
 <img width="1366" height="484" alt="Image" src="https://github.com/user-attachments/assets/d2dc8a91-a63f-484b-9df9-1f10cc528da7" />
 
 As you can see, our data is already starting to look much better.
 The dataset is already quite clean except for a few blank cells, so we can skip extensive cleaning and move straight to calculations.
 
+# Employee Master Data
+As requested by the client, I created three new sheets. The first is Employee Master Data, which contains mostly static personal and employment details that rarely change. The columns include:
+EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, TerminationDate, CompanyHireDate, LastPromotionDate, StreetAddress, City, State, ZipCode, IBAN, RoutingNumber, and BankAccountNumber.
 
-As requested by the client, I created three new sheets. The first is **Employee Master Data**, which contains mostly static personal and employment details that rarely change. The columns include:
-**EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, TerminationDate, CompanyHireDate, LastPromotionDate, StreetAddress, City, State, ZipCode, IBAN, RoutingNumber, and BankAccountNumber.**
-
-For the **EmployeeID** column, I used the formula 
+For the EmployeeID column, I used the formula 
 ```excel
 ='General Data'!A2
 ```
@@ -30,21 +30,21 @@ to pull the ID directly from the **General Data** sheet, ensuring consistency ac
 
 <img width="1361" height="423" alt="Image" src="https://github.com/user-attachments/assets/bac48513-6a6e-482d-9ede-3cfaf96234db" />
 
-For the **FirstName** column, I used the formula
+For the FirstName column, I used the formula
 
 ```excel
 =INDEX('General Data'!B:B, MATCH(A2, 'General Data'!A:A, 0))
 ```
 
-This finds the row where the **EmployeeID** in A2 appears in column A of the General Data sheet and returns the **FirstName** from column B of that row.
+This finds the row where the EmployeeID in A2 appears in column A of the General Data sheet and returns the FirstName from column B of that row.
 
-I used this **INDEX MATCH** method for multiple columns including EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, StreetAddress, City, State, ZipCode, IBAN, RoutingNumber, and BankAccountNumber.
+I used this INDEX MATCH method for multiple columns including EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, StreetAddress, City, State, ZipCode, IBAN, RoutingNumber, and BankAccountNumber.
 
 MATCH finds the correct row, and INDEX returns the value from the specified column in that row.
 
 You might be thinking, why not use VLOOKUP? VLOOKUP can only look to the right of the lookup column. Even though EmployeeID is in the first column, inserting a new column like MiddleName would break the formulas. INDEX MATCH avoids this because it specifies which column to return, making it more flexible and reliable.
 
-For the **TerminationDate** and **LastPromotionDate** columns, I did things a bit differently. Using the regular formula caused an error because some cells were blank, which makes sense since active employees don’t have a termination date. To fix this, I used
+For the TerminationDate and LastPromotionDate columns, I did things a bit differently. Using the regular formula caused an error because some cells were blank, which makes sense since active employees don’t have a termination date. To fix this, I used
 
 ```excel
 =IFERROR(INDEX('General Data'!O:O, MATCH(A2, 'General Data'!A:A, 0)),"")
@@ -61,11 +61,12 @@ As you can see, our HR data is looking nice.
 All of this data is referenced from the General Data sheet, so General Data remains the ultimate source. Any changes made there will automatically be reflected here, as requested by the client.
 
 
+# Payroll Data
+Next, I created a PayrollData sheet that only includes employees who meet the condition of being active, meaning their IsActive column is set to ‘Yes’.
 
+## JavaScript in Apps Script
 
-Next, I created a sheet called **PayrollData**, which includes columns such as EmployeeID, FirstName, LastName, Email, PhoneNumber, DateOfBirth, Gender, MaritalStatus, SSN, JobTitle, JobLevel, Department, EmploymentType, HireDate, TerminationDate, AnnualSalary, PayFrequency, HourlyRate, BenefitPlan, BankAccountNumber, RoutingNumber, StreetAddress, City, State, ZipCode, CompanyHireDate, Column 1, IsActive, IBAN, CreditCardNumber, CreditCardProvider, LastPromotionDate, BonusPaidYTD, TaxWithheldYTD, RetirementContributionYTD, GrossPay, CurrentBonus, Tax, CurrentRetirementContribution, NetPay, DateProcessed, and Month/Period.
-
-To pull data from **General Data** into a separate Payroll sheet, I wrote a script using **JavaScript** in **Apps Script**. The goal was to only bring in active employees, keeping the payroll data clean and up to date.
+To pull data from General Data into a separate Payroll sheet, I wrote a script using JavaScript in Apps Script. The goal was to only bring in active employees, keeping the payroll data clean and up to date.
 
 The script starts by accessing the spreadsheet and defining the source and target sheets:
 
@@ -75,7 +76,7 @@ var source = ss.getSheetByName('General Data');
 var target = ss.getSheetByName('Sheet5');
 ```
 
-It then grabs all the data from the source sheet and identifies the **IsActive** column. This column tells whether an employee is active. If it’s missing, the script stops because filtering would be impossible:
+It then grabs all the data from the source sheet and identifies the IsActive column. This column tells whether an employee is active. If it’s missing, the script stops because filtering would be impossible:
 
 ```javascript
 var data = source.getDataRange().getValues();
@@ -84,7 +85,7 @@ var isActiveCol = headers.indexOf("IsActive");
 if (isActiveCol === -1) throw new Error("IsActive column not found.");
 ```
 
-Next, it filters only the rows where **IsActive = "Yes"**, ensuring that only active employees are pulled:
+Next, it filters only the rows where IsActive = "Yes", ensuring that only active employees are pulled:
 
 ```javascript
 var active = data.slice(1).filter(r => r[isActiveCol] === "Yes");
@@ -268,6 +269,12 @@ The formula adjusts the output based on pay frequency:
 This setup ensures the Month/Period column always reflects the correct payroll cycle automatically.
 
 <img width="868" height="390" alt="Image" src="https://github.com/user-attachments/assets/e41cd0c5-c502-4779-9fb3-97bddf5c1a13" />
+
+## Sheets Protection
+
+I protected the sheet by setting it to display a warning before any edits, ensuring no one accidentally disrupts our functions.
+
+<img width="787" height="335" alt="Image" src="https://github.com/user-attachments/assets/b31f7fd0-d014-407c-ab60-64c083f38c24" />
 
 
 
