@@ -1,4 +1,4 @@
-# Payroll-Automation
+# Payroll-Automation (Google Sheets + Apps Script)
 
 ## Client Request
 
